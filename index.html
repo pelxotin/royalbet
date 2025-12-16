@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RoyalBet - Bolão & Apostas Esportivas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="rb-header">
+    <div class="rb-header-inner">
+      <div class="rb-logo">
+        <!-- Se quiser, troque por uma imagem: <img src="logo-royalbet.png" alt="RoyalBet" /> -->
+        <span class="rb-logo-icon">RB</span>
+        <div class="rb-logo-text">
+          <span class="rb-logo-name">RoyalBet</span>
+          <span class="rb-logo-tagline">Bolão & Futebol em tempo real</span>
+        </div>
+      </div>
+      <nav class="rb-nav">
+        <a href="#hero">Início</a>
+        <a href="#dashboard">Bolão</a>
+        <a href="#newsSection">Notícias</a>
+        <a href="#statsSection">Estatísticas</a>
+        <a href="#rulesSection">Regras</a>
+        <button id="themeToggleBtn" class="rb-ghost-button rb-theme-toggle" type="button">
+          Modo claro
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <section id="hero" class="rb-hero">
+    <div class="rb-hero-overlay"></div>
+    <div class="rb-hero-carousel">
+      <div class="rb-hero-slide active" style="background-image: url('https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg');">
+        <div class="rb-hero-content">
+          <h1>RoyalBet</h1>
+          <p>Seu bolão com cara de casa de apostas profissional.</p>
+        </div>
+      </div>
+      <div class="rb-hero-slide" style="background-image: url('https://images.pexels.com/photos/399187/pexels-photo-399187.jpeg');">
+        <div class="rb-hero-content">
+          <h1>Jogos ao vivo</h1>
+          <p>Acompanhe partidas e resultados atualizados em tempo real*</p>
+        </div>
+      </div>
+      <div class="rb-hero-slide" style="background-image: url('https://images.pexels.com/photos/1860795/pexels-photo-1860795.jpeg');">
+        <div class="rb-hero-content">
+          <h1>Desafie seus amigos</h1>
+          <p>Monte seu bolão, registre palpites e veja o ranking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="rb-main">
+    <section id="authSection" class="rb-auth-section">
+      <div class="rb-auth-card card">
+        <h2>RoyalBet</h2>
+        <p class="rb-auth-subtitle">
+          Crie sua conta ou entre para participar do bolão com ranking, estatísticas e palpites salvos.
+        </p>
+
+        <div class="rb-auth-tabs">
+          <button class="rb-auth-tab active" data-mode="login" type="button">Entrar</button>
+          <button class="rb-auth-tab" data-mode="register" type="button">Cadastrar</button>
+        </div>
+
+        <div class="rb-auth-panes">
+          <form id="loginForm" class="rb-auth-form rb-auth-pane" autocomplete="on">
+            <input type="email" id="email" placeholder="Email" required />
+            <input type="password" id="password" placeholder="Senha" required />
+            <button type="submit">Entrar</button>
+          </form>
+
+          <form id="registerForm" class="rb-auth-form rb-auth-pane hidden" autocomplete="on">
+            <input type="email" id="regEmail" placeholder="Email" required />
+            <input type="password" id="regPassword" placeholder="Senha" required />
+            <input type="password" id="regPasswordConfirm" placeholder="Confirmar senha" required />
+            <button type="submit">Criar conta</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="rb-dashboard hidden">
+      <div class="rb-dashboard-header">
+        <h2>Área do Bolão</h2>
+        <div class="rb-user-info">
+          <span id="currentUserLabel"></span>
+          <button id="logoutBtn" class="rb-ghost-button">Sair</button>
+        </div>
+      </div>
+
+      <div class="rb-dashboard-grid">
+        <section class="rb-panel">
+          <div class="rb-panel-header">
+            <h3>Jogos por campeonato</h3>
+            <select id="competitionFilter" class="rb-competition-filter">
+              <option value="all">Todos os campeonatos</option>
+            </select>
+          </div>
+          <ul id="matchesList" class="list rb-matches-list"></ul>
+          <p class="rb-panel-note">
+            *Dados reais dependem da configuração da API de futebol no arquivo <code>app.js</code>.
+          </p>
+        </section>
+
+        <section class="rb-panel">
+          <h3>Seu palpite</h3>
+          <form id="betForm" class="card rb-bet-form">
+            <label for="matchSelect">Selecione um jogo</label>
+            <select id="matchSelect" required></select>
+            <div class="score">
+              <input type="number" id="scoreA" min="0" placeholder="Gols time A" required />
+              <input type="number" id="scoreB" min="0" placeholder="Gols time B" required />
+            </div>
+            <button type="submit">Enviar palpite</button>
+          </form>
+
+          <div class="rb-panel rb-panel-bets">
+            <h3>Seus últimos palpites</h3>
+            <ul id="betsList" class="list"></ul>
+          </div>
+        </section>
+
+        <section class="rb-panel">
+          <h3>Ranking</h3>
+          <ol id="rankingList" class="list"></ol>
+          <p class="rb-panel-note">
+            Pontuação de exemplo. Você pode ligar isso a um back-end real depois.
+          </p>
+        </section>
+      </div>
+    </section>
+
+    <section id="newsSection" class="rb-news-section">
+      <div class="rb-section-header">
+        <h2>Notícias de Futebol</h2>
+        <p>Atualize esta seção com uma API de notícias ou mantenha notícias próprias.</p>
+      </div>
+      <div id="newsList" class="rb-news-grid">
+        <!-- Preenchido dinamicamente em app.js -->
+      </div>
+    </section>
+
+    <section id="statsSection" class="rb-stats-section">
+      <div class="rb-section-header">
+        <h2>Estatísticas do Bolão</h2>
+        <p>Visão geral rápida do engajamento e dos palpites da galera.</p>
+      </div>
+      <div class="rb-stats-grid">
+        <div class="rb-stat-card">
+          <span class="rb-stat-label">Total de palpites</span>
+          <span id="statsTotalBets" class="rb-stat-value">0</span>
+        </div>
+        <div class="rb-stat-card">
+          <span class="rb-stat-label">Seus palpites</span>
+          <span id="statsUserBets" class="rb-stat-value">0</span>
+        </div>
+        <div class="rb-stat-card">
+          <span class="rb-stat-label">Jogos diferentes palpitados</span>
+          <span id="statsUniqueMatches" class="rb-stat-value">0</span>
+        </div>
+        <div class="rb-stat-card">
+          <span class="rb-stat-label">Campeonato mais popular</span>
+          <span id="statsTopLeague" class="rb-stat-value rb-stat-small">-</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="rulesSection" class="rb-rules-section">
+      <div class="rb-section-header">
+        <h2>Regras do Bolão RoyalBet</h2>
+        <p>Defina as regras do jogo para todo mundo jogar na mesma página.</p>
+      </div>
+      <div class="rb-rules-grid">
+        <article class="rb-rule-card">
+          <h3>1. Cadastro e login</h3>
+          <p>Cada participante entra com um email e uma senha. Em produção, você pode conectar isso ao seu back-end com autenticação JWT.</p>
+        </article>
+        <article class="rb-rule-card">
+          <h3>2. Envio de palpites</h3>
+          <p>Os palpites devem ser feitos antes do início da partida. Depois do horário de início, você pode bloquear o envio via back-end.</p>
+        </article>
+        <article class="rb-rule-card">
+          <h3>3. Pontuação sugerida</h3>
+          <ul>
+            <li>Placar exato: 5 pontos</li>
+            <li>Acertou o vencedor/empate: 3 pontos</li>
+            <li>Acertou só um dos gols: 1 ponto</li>
+          </ul>
+        </article>
+        <article class="rb-rule-card">
+          <h3>4. Fair play</h3>
+          <p>Use o RoyalBet apenas para diversão entre amigos, sem apostas em dinheiro real, a menos que você tenha toda a licença necessária.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rb-footer">
+    <p>RoyalBet &copy; <span id="currentYear"></span> — Projeto de bolão pessoal, sem valor financeiro real.</p>
+  </footer>
+
+  <div id="toastContainer" class="rb-toast-container"></div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
